@@ -35,11 +35,11 @@ html
       .row
         .col-sm-3.col-md-2.sidebar
           ul class="nav nav-sidebar"
-            li class="active"
-              a href="#" Home
+            li
+              =link_to "Home", root_path
               span class="sr-only" (current)
             li
-              =link_to 'Data Pengeluaran', transactions_path
+              =link_to 'Data Transaksi', user_path(current_user)
             li
               a href="#" Analytics
             li

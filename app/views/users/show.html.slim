@@ -1,5 +1,5 @@
 h2
-  ="Data Transaksi Februari"
+  ="Data Transaksi"
 
 div class="table-responsive"
   table class="table table-hover"
@@ -9,19 +9,19 @@ div class="table-responsive"
         th Tanggal
         th Uraian
         th Harga
-        th Status
-        th Action
+        td Status
+        td Action
     tbody
-      - @user.transaction.each_with_index do |transaction, index|
-        tr
+      - @user.transactions.each_with_index do |transaction, index|
+        tr 
           td = index+1
           td = transaction.tgl
           td = transaction.uraian
           td = transaction.harga
+          td = transaction.status 
           td 
             = link_to 'Show', transaction
             = link_to 'Edit', edit_transaction_path(transaction)
             = link_to 'Destroy', transaction, data: { confirm: 'Are you sure?' }, method: :delete
 br
-
 = link_to 'New Transaction', new_transaction_path
