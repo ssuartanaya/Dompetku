@@ -1,0 +1,11 @@
+p style="color: #2ecc71"
+  =alert
+= form_for(resource, as: resource_name, url: session_path(resource_name), class: "login-form") do |f|
+  .field
+    = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email"
+  .field
+    = f.password_field :password, autocomplete: "off", placeholder: "Password"
+  - if devise_mapping.rememberable?
+  .actions
+    = f.submit "Log in", style: "background-color: #2ecc71;"
+= render "devise/shared/links"

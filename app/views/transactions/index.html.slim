@@ -1,27 +1,24 @@
-h1 Listing transactions
+h2
+  ="Data Pengeluaran Februari"
 
-table
-  thead
-    tr
-      th Tgl
-      th Uraian
-      th Harga
-      th Id user
-      th
-      th
-      th
-
-  tbody
-    - @transactions.each do |transaction|
+div class="table-responsive"
+  table class="table table-striped"
+    thead
       tr
-        td = transaction.tgl
-        td = transaction.uraian
-        td = transaction.harga
-        td = transaction.id_user
-        td = link_to 'Show', transaction
-        td = link_to 'Edit', edit_transaction_path(transaction)
-        td = link_to 'Destroy', transaction, data: { confirm: 'Are you sure?' }, method: :delete
-
+        th Tanggal
+        th Uraian
+        th Harga
+        th Action
+    tbody
+      - @transactions.each do |transaction|
+        tr
+          td = transaction.tgl
+          td = transaction.uraian
+          td = transaction.harga
+          td 
+            = link_to 'Show', transaction
+            = link_to 'Edit', edit_transaction_path(transaction)
+            = link_to 'Destroy', transaction, data: { confirm: 'Are you sure?' }, method: :delete
 br
 
 = link_to 'New Transaction', new_transaction_path
