@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :transactions
   resources :users
-  resources :home
+
+  get 'users/:id/home', to: 'users#home', as: 'home'
 
   devise_scope :user do
     root to: "devise/sessions#new"

@@ -36,21 +36,19 @@ html
         .col-sm-3.col-md-2.sidebar
           ul class="nav nav-sidebar"
             li
-              =link_to "Home", root_path
-              span class="sr-only" (current)
+              =link_to root_path do
+                i class="fa fa-home"
+                = "&nbsp;".html_safe()
+                | Home
             li
-              =link_to 'Data Transaksi', user_path(current_user)
+              =link_to user_path(current_user) do
+                i class="fa fa-dollar"
+                = "&nbsp;".html_safe()
+                | Data transaction
             li
               a href="#" Analytics
             li
               a href="#" Report Data
-          ul class="nav nav-sidebar"
-            li
-              a href="" Nav item
-            li
-              a href="" Nav item
-            li
-              a href="" Nav item
 
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
           = yield

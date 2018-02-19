@@ -6,19 +6,25 @@
         - @transaction.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :tgl
-    = f.date_select :tgl
-  .field
+  .form-group
+    = f.label :tanggal
+    = f.text_field :tgl, class:"form-control datetimepicker"
+  .form-group
     = f.label :uraian
-    = f.text_area :uraian
-  .field
+    = f.text_field :uraian, class: "form-control"
+  .form-group
     = f.label :harga
-    = f.number_field :harga
-  .field
-    = f.label :status
-    = f.text_field :status
-  .field
+    = f.number_field :harga, class: "form-control"
+  .radio
+    label
+      = f.radio_button :status, false, :checked => @transaction.new_record? ? false : @transaction.status == false
+      = "Kredit"
+  .radio
+    label
+      = f.radio_button :status, true, :checked => @transaction.new_record? ? false : @transaction.status == true
+      = "Debit"
+  .form-group
     = f.label :category
-    = f.text_field :category 
-  .actions = f.submit
+    = f.text_field :category, class: "form-control"
+  .actions 
+    = f.submit "Submit", class: "btn btn-primary btn-block"

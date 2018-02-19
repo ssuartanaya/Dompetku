@@ -1,3 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+ready = -> 
+    $("#form_transaksi").hide()
+    $("body").on "click", "#tombol_form", (e) ->
+        e.preventDefault()
+        $("#form_transaksi").toggle("slow")
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

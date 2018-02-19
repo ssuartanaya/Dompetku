@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  respond_to :js, :html, :json
 
   # GET /transactions
   # GET /transactions.json
@@ -16,6 +17,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = current_user.transactions.build
+    respond_with(@transaction)
   end
 
   # GET /transactions/1/edit

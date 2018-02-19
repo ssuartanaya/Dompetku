@@ -15,4 +15,15 @@
 //= require jquery3
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require moment
+//= require bootstrap-datetimepicker
 //= require_tree .
+
+var ready;
+ready = function() {
+    $(function () {
+        $('.datetimepicker').datetimepicker();
+    });
+};
+$(document).ready(ready);
+$(document).on('page:load', ready);

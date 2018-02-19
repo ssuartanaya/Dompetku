@@ -1,37 +1,55 @@
-h2
-  ="Data Transaksi"
-p
-  =notice
 
-div class="table-responsive"
-  table class="table table-hover"
-    thead
-      tr
-        th No
-        th Tanggal
-        th Uraian
-        th Harga
-        th Kategori
-        th Status
-        th Action
-    tbody
-      - @user.transactions.order("tgl ASC").each_with_index do |transaction, index|
-        tr 
-          td = index+1
-          td = transaction.tgl
-          td = transaction.uraian
-          td = transaction.harga
-          td = transaction.category
-          td
-            - if transaction.status == true
-              | Debit
-            - else
-              | Kredit
-          td 
-            = link_to edit_transaction_path(transaction) do
-              i class="fa fa-pencil" style="color: green"
-            = "&nbsp;".html_safe()
-            = link_to transaction, data: { confirm: 'Are you sure?' }, method: :delete do
-              i class="fa fa-trash" style="color: green"
+h2.page-header
+  ="Data Transaksi"
+= link_to new_transaction_path, id:"tombol_form" , class: "btn btn-success btn-sm"
+  / , remote: true do
+  | New Transaction
+  = "&nbsp;".html_safe();
+  i class="fa fa-plus"
+/ a#tombol_form href="#" class="btn btn-success btn-sm"
+/   = "TOMBOL"
+#form_transaksi
+  br
+  == render "transactions/form"
 br
-= link_to 'New Transaction', new_transaction_path
+- unless @user.transactions.any?
+  .well Kamu belum pernah melakukan transaksi
+- else
+  p
+    =notice
+
+  div class="table-responsive"
+    table class="table table-striped"
+      thead
+        tr
+          th No
+          th Tanggal
+          th Uraian
+          th Harga
+          th Kategori
+          th Status
+          th Saldo
+          th Action
+      tbody
+        - @user.transactions.order("tgl ASC").each_with_index do |transaction, index|
+          tr
+            td = index+1
+            td = transaction.tgl
+            td = transaction.uraian
+            td = "Rp #{transaction.harga}"
+            td = transaction.category
+            td
+              - if transaction.status == true
+                span
+                  .label.label-danger Debit
+              - else
+                span
+                  .label.label-primary Kredit
+            td = transaction.saldo
+            td 
+              = link_to edit_transaction_path(transaction) do
+                i class="fa fa-pencil" style="color: green"
+              = "&nbsp;".html_safe()
+              = link_to transaction, data: { confirm: 'Are you sure?' }, method: :delete do
+                i class="fa fa-trash" style="color: green"
+
