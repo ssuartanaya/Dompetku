@@ -1,5 +1,7 @@
 h2
   ="Data Transaksi"
+p
+  =notice
 
 div class="table-responsive"
   table class="table table-hover"
@@ -9,19 +11,27 @@ div class="table-responsive"
         th Tanggal
         th Uraian
         th Harga
-        td Status
-        td Action
+        th Kategori
+        th Status
+        th Action
     tbody
-      - @user.transactions.each_with_index do |transaction, index|
+      - @user.transactions.order("tgl ASC").each_with_index do |transaction, index|
         tr 
           td = index+1
           td = transaction.tgl
           td = transaction.uraian
           td = transaction.harga
-          td = transaction.status 
+          td = transaction.category
+          td
+            - if transaction.status == true
+              | Debit
+            - else
+              | Kredit
           td 
-            = link_to 'Show', transaction
-            = link_to 'Edit', edit_transaction_path(transaction)
-            = link_to 'Destroy', transaction, data: { confirm: 'Are you sure?' }, method: :delete
+            = link_to edit_transaction_path(transaction) do
+              i class="fa fa-pencil" style="color: green"
+            = "&nbsp;".html_safe()
+            = link_to transaction, data: { confirm: 'Are you sure?' }, method: :delete do
+              i class="fa fa-trash" style="color: green"
 br
 = link_to 'New Transaction', new_transaction_path

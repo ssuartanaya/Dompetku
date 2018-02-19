@@ -12,7 +12,7 @@ div class="table-responsive"
         th Status
         th Action
     tbody
-      - @user.transaction.each_with_index do |transaction, index|
+      - @transactions.user.each_with_index do |transaction, index|
         tr
           td = index+1
           td = transaction.tgl

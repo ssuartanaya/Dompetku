@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
 /*
  * Base structure
@@ -9,7 +10,10 @@
 body {
     padding-top: 50px;
   }
-  
+  a {
+    color: #1e824c;
+    text-decoration: none;
+}
   
   /*
    * Global add-ons
@@ -26,7 +30,7 @@ body {
   color: #eee;
 }
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #86bf66;
+  background-color: #106537;
   color: #fff;
 }
   .sub-header {
