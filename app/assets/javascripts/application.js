@@ -16,6 +16,8 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require sweetalert2
+//= require sweet-alert2-rails
 //= require_tree .
 
 var ready;

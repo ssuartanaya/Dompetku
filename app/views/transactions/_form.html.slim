@@ -37,7 +37,8 @@
     /   otion Komunikasi
     /   otion Lain - lain
     - categories = Category.all.map{ |x| [x.category_name, x.id] }
-    = f.select :category_id, (options_for_select(categories)), {}, {class: "form-control"}
+    = f.select :category_id, (options_for_select(categories, @transaction.category_id)),{}, {class: "form-control"}
+    / = f.select :category_id, (options_for_select(categories), @transaction.category_id),{}, {class: "form-control"}
 
   .actions 
     = f.submit "Submit", class: "btn btn-primary btn-block"

@@ -27,7 +27,16 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    @transaction = current_user.transactions.build(transaction_params)
+    transaction = current_user.transactions
+    # last_transaction = transaction.last
+    last_saldo = transaction.last.nil? ? 0 : transaction.last.saldo
+    @transaction = transaction.build(transaction_params)
+    if @transaction.status
+      new_saldo = last_saldo - @transaction.harga
+    else
+      new_saldo = last_saldo + @transaction.harga      
+    end
+    @transaction.saldo = new_saldo
 
     respond_to do |format|
       if @transaction.save
