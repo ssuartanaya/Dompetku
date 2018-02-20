@@ -15,15 +15,19 @@
 //= require jquery3
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require moment
-//= require bootstrap-datetimepicker
+//= require bootstrap-datepicker
 //= require_tree .
 
 var ready;
 ready = function() {
-    $(function () {
-        $('.datetimepicker').datetimepicker();
-    });
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        startDate: '1d',
+        todayHighlight: true,
+        todayBtn: 'linked',
+        weekStart: 1,
+        autoclose: true
+      })
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);

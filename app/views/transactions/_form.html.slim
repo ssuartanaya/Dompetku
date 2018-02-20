@@ -7,24 +7,37 @@
           li = message
 
   .form-group
-    = f.label :tanggal
-    = f.text_field :tgl, class:"form-control datetimepicker"
+    = f.label :tgl
+    = f.text_field :tgl, class:"form-control datepicker", placeholder: "Tanggal Transaksi"
   .form-group
     = f.label :uraian
-    = f.text_field :uraian, class: "form-control"
+    = f.text_field :uraian, class: "form-control", placeholder: "Uraian Pembelian"
   .form-group
     = f.label :harga
-    = f.number_field :harga, class: "form-control"
-  .radio
-    label
-      = f.radio_button :status, false, :checked => @transaction.new_record? ? false : @transaction.status == false
-      = "Kredit"
-  .radio
-    label
-      = f.radio_button :status, true, :checked => @transaction.new_record? ? false : @transaction.status == true
-      = "Debit"
+    = f.number_field :harga, class: "form-control", placeholder: "Jumlah Harga"
+  .form-group
+    = f.label :tipe   
+    .radio
+      label
+        = f.radio_button :status, false, :checked => @transaction.new_record? ? false : @transaction.status == false
+        = "Kredit"
+    .radio
+      label
+        = f.radio_button :status, true, :checked => @transaction.new_record? ? false : @transaction.status == true
+        = "Debit"
   .form-group
     = f.label :category
-    = f.text_field :category, class: "form-control"
+    / select.form-control
+    /   otion Uang Awal
+    /   otion Gaji
+    /   otion Jualan
+    /   otion Makanan & Minuman
+    /   otion Kampus
+    /   otion Akomodasi
+    /   otion Komunikasi
+    /   otion Lain - lain
+    - categories = Category.all.map{ |x| [x.category_name, x.id] }
+    = f.select :category_id, (options_for_select(categories)), {}, {class: "form-control"}
+
   .actions 
     = f.submit "Submit", class: "btn btn-primary btn-block"

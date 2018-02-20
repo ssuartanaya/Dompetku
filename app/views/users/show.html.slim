@@ -37,7 +37,7 @@ br
             td = transaction.tgl
             td = transaction.uraian
             td = "Rp #{transaction.harga}"
-            td = transaction.category
+            td = transaction.category.category_name
             td
               - if transaction.status == true
                 span
