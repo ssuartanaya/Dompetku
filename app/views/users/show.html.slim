@@ -35,7 +35,7 @@ br
             td = index+1
             td = transaction.tgl
             td = transaction.uraian
-            td = "Rp #{transaction.harga}"
+            td = "#{number_to_currency(transaction.harga, unit: "Rp ")}"
             td = transaction.category.category_name
             td
               - if transaction.status == true
@@ -49,6 +49,6 @@ br
               = link_to edit_transaction_path(transaction) do
                 i class="fa fa-pencil" style="color: green"
               = "&nbsp;".html_safe()
-              = link_to transaction,  data: { confirm: 'Are you sure?', 'confirm-button-text': 'Yes, im sure', 'cancel-button-text': 'No way', 'confirm-button-color': '#5cb85c', 'sweet-alert-type': 'warning', text: 'Delete data transaction'}, method: :delete do
+              = link_to transaction,  data: { confirm: 'Are you sure?', 'confirm-button-text': 'Yes, im sure', 'cancel-button-text': 'No way', 'confirm-button-color': '#ff4444', 'sweet-alert-type': 'warning', text: 'Delete data transaction'}, method: :delete do
                 i class="fa fa-trash" style="color: green"
 

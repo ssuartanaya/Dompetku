@@ -20,19 +20,12 @@ html
           
         div id="navbar" class="navbar-collapse collapse"
           ul class="nav navbar-nav navbar-right"
-            - if user_signed_in?
-              li.dropdown
-                a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
-                  strong
-                    ="Rp #{@last_saldo}"                  
-                  = "&nbsp; • &nbsp;".html_safe()
-                  = current_user.email                  
-                ul class="dropdown-menu"
-                  li
-                    = link_to "logout", destroy_user_session_path, method: :delete
-            - else
-              li 
-                = link_to "Login", new_user_session_path
+            li
+              a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+                strong
+                  ="#{number_to_currency(@last_saldo, unit: "Rp ")}"                  
+                = "&nbsp; • &nbsp;".html_safe()
+                = current_user.email                  
 
     .container-fluid
       .row
@@ -49,9 +42,22 @@ html
                 = "&nbsp;".html_safe()
                 | Data transaction
             li
+              =link_to user_path(current_user) do
+                i class="fa fa-tags"
+                = "&nbsp;".html_safe()
+                | Category
+            li
               a href="#" Analytics
             li
               a href="#" Report Data
 
+          ul class="nav nav-sidebar"
+            li =link_to destroy_user_session_path, method: :delete do
+                i class="fa fa-sign-out"
+                = "&nbsp;".html_safe()
+                | Logout
+
         .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
           = yield
+
+    = render 'sweetify/alert'

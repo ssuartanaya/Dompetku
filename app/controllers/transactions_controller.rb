@@ -32,34 +32,31 @@ class TransactionsController < ApplicationController
     last_saldo = transaction.last.nil? ? 0 : transaction.last.saldo
     @transaction = transaction.build(transaction_params)
     if @transaction.status
-      new_saldo = last_saldo - @transaction.harga
+      s = @transaction.harga.nil? ? 0 : @transaction.harga
+      new_saldo = last_saldo - s
     else
-      new_saldo = last_saldo + @transaction.harga      
+      r = @transaction.harga.nil? ? 0 : @transaction.harga
+      new_saldo = last_saldo + r
     end
     @transaction.saldo = new_saldo
-
-    respond_to do |format|
-      if @transaction.save
-        format.html { redirect_to user_path(current_user), notice: 'Transaction was successfully created.' }
-        format.json { render :show, status: :created, location: @transaction }
-      else
-        format.html { render :new }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
-      end
-    end
+    if @transaction.save
+      sweetalert_success('Your transaction successfully created.', 'Successfully created', persistent: 'Okay!') 
+      redirect_to user_path(current_user)
+    else
+      sweetalert_danger('Sorry transaction unsuccessful.', 'Sorry...', persistent: 'Dismiss!') 
+      redirect_to user_path(current_user)
+    end  
   end
 
   # PATCH/PUT /transactions/1
   # PATCH/PUT /transactions/1.json
   def update
-    respond_to do |format|
-      if @transaction.update(transaction_params)
-        format.html { redirect_to user_path(current_user), notice: 'Transaction was successfully updated.' }
-        format.json { render :show, status: :ok, location: @transaction }
-      else
-        format.html { render :edit }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
-      end
+    if @transaction.update(transaction_params)
+      sweetalert_success('Your transaction successfully updated.', 'Successfully updated', persistent: 'Okay!') 
+      redirect_to user_path(current_user)
+    else
+      format.html { render :edit }
+      format.json { render json: @transaction.errors, status: :unprocessable_entity }
     end
   end
 
@@ -67,10 +64,8 @@ class TransactionsController < ApplicationController
   # DELETE /transactions/1.json
   def destroy
     @transaction.destroy
-    respond_to do |format|
-      format.html { redirect_to user_path(current_user), notice: 'Transaction was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    sweetalert_success('Your transaction successfully deleted.', 'Successfully deleted', persistent: 'Okay!') 
+    redirect_to user_path(current_user)
   end
 
   private

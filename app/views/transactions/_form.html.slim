@@ -41,4 +41,4 @@
     / = f.select :category_id, (options_for_select(categories), @transaction.category_id),{}, {class: "form-control"}
 
   .actions 
-    = f.submit "Submit", class: "btn btn-primary btn-block"
+    = f.submit "Submit", class: "btn btn-primary btn-block", data: { confirm: 'Are you sure?', 'confirm-button-text': 'Yes, im sure', 'cancel-button-text': 'No wait', 'confirm-button-color': '#5bc0de', 'sweet-alert-type': 'info', text: 'Submit transaction'}
