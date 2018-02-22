@@ -9,18 +9,55 @@
       =link_to "Mulai", new_transaction_path, class: 'btn btn-success btn-lg'
 - else
   h2 class="page-header" Dashboard
-  p
-    =notice
   div class="row placeholders"
     div class="col-xs-6 col-sm-3 placeholder"
-      .well.well-lg
-        | Something else
+      .well.well-lg style="background-color:#1E824C; color: #eee"
+        .row
+          .col-md-2
+            i.glyphicon.glyphicon-usd style="font-size:45px"
+          .col-md-10
+            = "&nbsp;&nbsp;&nbsp;".html_safe();
+            | Saldo sekarang
+            br
+            | #{number_to_currency(@last_saldo, unit: "Rp ")}
     div class="col-xs-6 col-sm-3 placeholder"
-      .well.well-lg
-        | Something else
+      .well.well-lg style="background-color:#336E7B; color: #eee"
+        .row
+          .col-md-2
+            i.glyphicon.glyphicon-refresh style="font-size:45px"
+          .col-md-10
+            = "&nbsp;&nbsp;&nbsp;".html_safe();
+            | Total Transactions
+            br
+            = current_user.transactions.count
+            = "&nbsp;".html_safe()
+            | Transactions   
     div class="col-xs-6 col-sm-3 placeholder"
-      .well.well-lg
-        | Something else
+      .well.well-lg style="background-color:#D2527F; color: #eee"
+        .row
+          .col-md-2
+            i.glyphicon.glyphicon-arrow-up style="font-size:45px"
+          .col-md-10
+            = "&nbsp;&nbsp;&nbsp;".html_safe();
+            | Maximum Spending
+            br
+            | #{number_to_currency(@max, unit: "Rp ")} 
     div class="col-xs-6 col-sm-3 placeholder"
-      .well.well-lg
-        | Something else
+      .well.well-lg style="background-color:#E87E04; color: #eee"
+        .row
+          .col-md-2
+            i.glyphicon.glyphicon-arrow-down style="font-size:45px"
+          .col-md-10
+            = "&nbsp;&nbsp;&nbsp;".html_safe();
+            | Maximum Income
+            br
+            | #{number_to_currency(@maxs, unit: "Rp ")} 
+  .row
+    .col-md-6 
+      h4 style="text-align:center;"
+        | Banyak Transaksi Per Hari
+      = column_chart @saldo.group_by_day(:tgl).count, legend: false
+    .col-md-6
+      h4 style="text-align:center;"
+        | Kategori Transaksi
+      = pie_chart @saldo.group(:category_id).count

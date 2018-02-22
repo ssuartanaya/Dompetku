@@ -18,6 +18,8 @@
 //= require bootstrap-datepicker
 //= require sweetalert2
 //= require sweet-alert2-rails
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
 
 var ready;
@@ -30,6 +32,44 @@ ready = function() {
         weekStart: 1,
         autoclose: true
       })
+    $('[data-toggle="tooltip"]').tooltip()
+    Highcharts.chart('container', {
+        chart: {
+          type: 'pie'
+        },
+    
+        title: {
+          text: null
+        },
+    
+        legend: {
+          symbolWidth: 40,
+        //       symbolHeight: 20,
+          squareSymbol: false,
+          symbolRadius: 0
+        },
+    
+        plotOptions: {
+          pie: {
+            dataLabels: {
+              enabled: false
+            }
+          }
+        },
+    
+        series: [{
+          showInLegend: true,
+          data: [
+            ['s1', 1],
+            ['s2', 2],
+            ['s3', 3],
+            ['s4', 4],
+            ['s5', 5],
+            ['s5', 6],
+            ['s5', 7],
+            ['s5', 8],
+          ]
+        }],
+      });
 };
-$(document).ready(ready);
-$(document).on('page:load', ready);
+$(document).on('turbolinks:load', ready);

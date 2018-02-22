@@ -18,7 +18,7 @@ br
     =notice
 
   div class="table-responsive"
-    table class="table table-striped"
+    table class="table table-striped table-bordered"
       thead
         tr
           th No
@@ -30,7 +30,7 @@ br
           th Saldo
           th Action
       tbody
-        - @user.transactions.order("tgl ASC").each_with_index do |transaction, index|
+        - @user.transactions.order("created_at ASC").each_with_index do |transaction, index|
           tr
             td = index+1
             td = transaction.tgl
@@ -44,8 +44,8 @@ br
               - else
                 span
                   .label.label-primary Kredit
-            td = "Rp #{transaction.saldo}"
-            td 
+            td = "#{number_to_currency(transaction.saldo, unit: "Rp ")}"
+            td style="text-align: center;"
               = link_to edit_transaction_path(transaction) do
                 i class="fa fa-pencil" style="color: green"
               = "&nbsp;".html_safe()

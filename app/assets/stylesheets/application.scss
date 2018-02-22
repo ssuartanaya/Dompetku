@@ -9,18 +9,19 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
+    font-family: Gotham Rounded Light; 
     padding-top: 50px;
   }
   a {
     color: #1e824c;
     text-decoration: none;
-}
+  }
   /*
    * Global add-ons
    */
    .navbar-inverse {
-    background-color: #1e824c;
-    border-color: #1e824c;
+    background-color: #5cb85c;
+    border-color: #5cb85c;
     color: black;
 }
 .navbar-inverse .navbar-brand {
@@ -30,7 +31,7 @@ body {
   color: #eee;
 }
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #106537;
+  background-color: #5cb85c;
   color: #fff;
 }
   .sub-header {
@@ -201,8 +202,10 @@ body {
   .main .page-header {
     margin-top: 0;
   }
-  
-  
+  @media (min-width: 992px){
+    .col-md-1 {
+      width: 6.3333333333%;}
+  }
   /*
    * Placeholder dashboard ideas
    */

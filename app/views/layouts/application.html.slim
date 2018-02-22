@@ -3,6 +3,7 @@ html
   head
     title Dompetku
     meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = favicon_link_tag 'a.ico'
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -16,7 +17,10 @@ html
             span class="icon-bar"
             span class="icon-bar"
             span class="icon-bar"
-          =link_to "Dompetku", root_path, class: "navbar-brand"
+          =link_to root_path, class: "navbar-brand" do
+            | Dompetku
+            = "&nbsp;".html_safe()
+            i.glyphicon.glyphicon-piggy-bank
           
         div id="navbar" class="navbar-collapse collapse"
           ul class="nav navbar-nav navbar-right"
@@ -29,35 +33,30 @@ html
 
     .container-fluid
       .row
-        .col-sm-3.col-md-2.sidebar
+        .col-sm-3.col-md-1.sidebar
           ul class="nav nav-sidebar"
             li
               =link_to root_path do
-                i class="fa fa-home"
+                i class="fa fa-home" style="font-size: 25px; text-align: center; display: block;" data-toggle="tooltip" data-placement="bottom" title="Home"
                 = "&nbsp;".html_safe()
-                | Home
             li
               =link_to user_path(current_user) do
-                i class="fa fa-dollar"
+                i class="fa fa-dollar" style="font-size: 25px; text-align: center; display: block;" data-toggle="tooltip" data-placement="bottom" title="Transaction"
                 = "&nbsp;".html_safe()
-                | Data transaction
             li
-              =link_to user_path(current_user) do
-                i class="fa fa-tags"
+              =link_to categories_path do
+                i class="fa fa-tags" style="font-size: 25px; text-align: center; display: block;" data-toggle="tooltip" data-placement="bottom" title="Category"
                 = "&nbsp;".html_safe()
-                | Category
             li
-              a href="#" Analytics
-            li
-              a href="#" Report Data
-
+              =link_to categories_path do
+                i class="fa fa-bar-chart" style="font-size: 25px; text-align: center; display: block;"data-toggle="tooltip" data-placement="bottom" title="Report"
+                = "&nbsp;".html_safe()
+          hr style="background-color: black;"
           ul class="nav nav-sidebar"
             li =link_to destroy_user_session_path, method: :delete do
-                i class="fa fa-sign-out"
-                = "&nbsp;".html_safe()
-                | Logout
+                i class="fa fa-sign-out" style="font-size: 25px; text-align: center; display: block;" data-toggle="tooltip" data-placement="bottom" title="Logout"
 
-        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+        .col-sm-9.col-sm-offset-3.col-md-11.col-md-offset-1.main
           = yield
 
     = render 'sweetify/alert'

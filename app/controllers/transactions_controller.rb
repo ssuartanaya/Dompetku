@@ -43,7 +43,7 @@ class TransactionsController < ApplicationController
       sweetalert_success('Your transaction successfully created.', 'Successfully created', persistent: 'Okay!') 
       redirect_to user_path(current_user)
     else
-      sweetalert_danger('Sorry transaction unsuccessful.', 'Sorry...', persistent: 'Dismiss!') 
+      sweetalert_error('Sorry transaction unsuccessful.', 'Sorry...', persistent: 'Dismiss!') 
       redirect_to user_path(current_user)
     end  
   end
@@ -55,8 +55,8 @@ class TransactionsController < ApplicationController
       sweetalert_success('Your transaction successfully updated.', 'Successfully updated', persistent: 'Okay!') 
       redirect_to user_path(current_user)
     else
-      format.html { render :edit }
-      format.json { render json: @transaction.errors, status: :unprocessable_entity }
+      sweetalert_error('Sorry transaction unsuccessful.', 'Sorry...', persistent: 'Dismiss!') 
+      redirect_to user_path(current_user)
     end
   end
 
