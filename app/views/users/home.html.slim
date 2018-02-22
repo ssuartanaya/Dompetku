@@ -56,8 +56,8 @@
     .col-md-6 
       h4 style="text-align:center;"
         | Banyak Transaksi Per Hari
-      = column_chart @saldo.group_by_day(:tgl).count, legend: false
+      = column_chart @saldo.group_by_day(:tgl).count, label: "Total Transactions"
     .col-md-6
       h4 style="text-align:center;"
         | Kategori Transaksi
-      = pie_chart @saldo.group(:category_id).count
+      = pie_chart @saldo.group(:status).count

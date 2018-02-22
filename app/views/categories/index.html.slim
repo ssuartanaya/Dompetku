@@ -1,6 +1,17 @@
 h2.page-header
   | List Category
-
+= link_to new_category_path, id:"tombol_form" , class: "btn btn-success btn-sm"
+  / , remote: true do
+  | Add Category
+  = "&nbsp;".html_safe();
+  i class="fa fa-plus"
+/ a#tombol_form href="#" class="btn btn-success btn-sm"
+/   = "TOMBOL"
+br
+#form_transaksi
+  br
+  == render "categories/form"
+br
 div class="table-responsive"
   table class="table table-striped table-bordered"
     thead
@@ -18,8 +29,7 @@ div class="table-responsive"
             = link_to edit_category_path(category) do
               i class="fa fa-pencil" style="color: green"
             = "&nbsp;".html_safe()
-            = link_to categories_path,  data: { confirm: 'Are you sure?', 'confirm-button-text': 'Yes, im sure', 'cancel-button-text': 'No way', 'confirm-button-color': '#ff4444', 'sweet-alert-type': 'warning', text: 'Delete data transaction'}, method: :delete do
+            = link_to category,  data: { confirm: 'Are you sure?', 'confirm-button-text': 'Yes, im sure', 'cancel-button-text': 'No way', 'confirm-button-color': '#ff4444', 'sweet-alert-type': 'warning', text: 'Delete data transaction'}, method: :delete do
               i class="fa fa-trash" style="color: green"
 br
 
-= link_to 'New Category', new_category_path

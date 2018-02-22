@@ -6,7 +6,8 @@
         - @category.errors.full_messages.each do |message|
           li = message
 
-  .field
+  .form-group
     = f.label :category_name
-    = f.text_field :category_name
-  .actions = f.submit
+    = f.text_field :category_name, class: "form-control"
+  .actions 
+    = f.submit "Submit", class: "btn btn-primary btn-block", data: { confirm: 'Are you sure?', 'confirm-button-text': 'Yes, im sure', 'cancel-button-text': 'No wait', 'confirm-button-color': '#5bc0de', 'sweet-alert-type': 'info', text: 'Submit transaction'}
