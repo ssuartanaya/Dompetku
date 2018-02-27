@@ -20,10 +20,13 @@
 //= require sweet-alert2-rails
 //= require Chart.bundle
 //= require chartkick
+//= require jquery.dataTables.min
+//= require dataTables.bootstrap.min
 //= require_tree .
 
 var ready;
 ready = function() {
+    $('#index_table').DataTable();
     $('.datepicker').datepicker({
         format: 'dd/mm/yyyy',
         startDate: '1d',
